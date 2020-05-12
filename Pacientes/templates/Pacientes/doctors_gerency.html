@@ -5,13 +5,15 @@
     
     <h1 style="color:aliceblue"><strong>Cuentas Registradas como Doctores:</strong></h1>
 
-     <table class="egt" style="color:aliceblue">
+     <table class="table" style="color:aliceblue">
         {% if doctors%}
+        <thead class="thead-dark">
         <tr> 
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Pacientes</th>
         </tr>
+      </thead>
         {% for doctor in doctors %}
         <tr>
           <td>{{doctor.first_name}}</td>

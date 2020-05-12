@@ -6,17 +6,20 @@
     <h1 style="color:aliceblue"><strong>Productos más  Vendidos del mes:</strong></h1>
       {% if request.user|has_group:"GER"%}
       
-      <table class="egt" style="color:aliceblue">
+      <table class="table" style="color:aliceblue">
         {% if products%}
+        <thead class="thead-dark">
         <tr> 
           <th>Unidades vendidas</th>
           <th>Nombre</th>
         </tr>
+      </thead>
         {% for product in products %}
         <tr>
           <td>{{product.1}}</td>
           <td>{{product.0}}</td>
         </tr>
+      
         {% endfor %}
         {% else %}
             <h2 style="color:aliceblue">No hay productos vendidos...</h2>

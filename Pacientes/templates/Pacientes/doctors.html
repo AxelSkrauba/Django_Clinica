@@ -5,13 +5,15 @@
     
     <h1 style="color:aliceblue"><strong>Doctores Registrados:</strong><a class="btn btn-default" href="{% url 'doctor_new' %}">Agregar nuevo</span></a></h1>
 
-     <table class="egt" style="color:aliceblue">
+     <table class="table" style="color:aliceblue">
         {% if doctors%}
+        <thead class="thead-dark">
         <tr> 
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Pacientes</th>
         </tr>
+      </thead>
         {% for doctor in doctors %}
         <tr>
           <td>{{doctor.first_name}}</td>

@@ -5,22 +5,38 @@
     
     <h1 style="color:aliceblue"><strong>Reportes Disponibles:</strong></h1>
       {% if request.user|has_group:"GER"%}
-      <br>
-      <tr>
-        <a class="btn btn-default" href="{% url 'patient_asist' %}">Asistencia de Pacientes</span></a>
-      </tr>
-      <tr>
-        <a class="btn btn-default" href="{% url 'patient_not_asist' %}">Inasistencia de Pacientes</span></a>
-      </tr>
-      <tr>
-        <a class="btn btn-default" href="{% url 'patient_order' %}">Pedidos de Pacientes</span></a>
-      </tr>
-      <tr>
-        <a class="btn btn-default" href="{% url 'product_most_selled' %}">Productos más Vendidos</span></a>
-      </tr>
-      <tr>
-        <a class="btn btn-default" href="{% url 'sales_month_seller' %}">Ventas por Vendedor por Mes</span></a>
-      </tr>
+
+
+      <table class="table" style="color:aliceblue">
+        <thead class="thead-dark">
+          <tr> 
+            <th>Tipo de Reporte</th>
+            <th>IR</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>Asistencia de Pacientes (Semana/Mes)</td>
+          <td><a class="btn btn-default" href="{% url 'patient_asist' %}">IR</span></a></td>
+        </tr>
+        <tr>
+          <td>Inasistencia de Pacientes (Semana/Mes)</td>
+          <td><a class="btn btn-default" href="{% url 'patient_not_asist' %}">IR</span></a></td>
+        </tr>
+        <tr>
+          <td>Pedidos de Pacientes (Semana/Mes)</td>
+          <td><a class="btn btn-default" href="{% url 'patient_order' %}">IR</span></a></td>
+        </tr>
+        <tr>
+          <td>Productos más Vendidos en el Mes</td>
+          <td><a class="btn btn-default" href="{% url 'product_most_selled' %}">IR</span></a></td>
+        </tr>
+        <tr>
+          <td>Ventas Totales por Vendedor, Clasificadas por Mes</td>
+          <td><a class="btn btn-default" href="{% url 'sales_month_seller' %}">IR</span></a></td>
+        </tr>
+      </table>
+
+
       {% else %}
       <h2 style="color:aliceblue">Debe pertenecer al grupo GERENCIA.</h2>
       {% endif %}

@@ -9,9 +9,9 @@
       <thead class="thead-dark">
         {% if orders%}
             <tr> 
-              <th scope="col">Cantidad</th>
+              <th>Cantidad</th>
               <th>Articulo</th>
-              <th scope="col">Estado</th>
+              <th>Estado</th>
 
               <th>Descripción</th>
               <th>¿Es Lente?</th>
@@ -21,7 +21,7 @@
             </tr>
       </thead>
             {% for order in orders %}
-              {% if order.status != "FI" %}
+              {% if order.status == "TA" %}
                     <tr>
                       <td>{{order.units}}</td>
                       <td>{{order.article}}</td>

@@ -12,20 +12,22 @@
     {% if request.user|has_group:"DOC"%}
     <form class="navbar-form navbar-right"  action="." method="get">
       {{ form.as_p }}
-      <input id="date_ref" name="date_ref" type="date" placeholder="Localizar..." class="form-control">
-      <button type="submit" class="btn btn-success form-control">Filtrar<span class="glyphicon glyphicon-search"></span></button>
+      <input id="date_ref" name="date_ref" type="date">
+      <button type="submit" class="btn btn-success">Filtrar<span class="glyphicon glyphicon-search"></span></button>
   </form>
   {% endif %}
 
 
-     <table class="egt" style="color:aliceblue">
+     <table class="table" style="color:aliceblue">
         {% if consultations%}
+        <thead class="thead-dark">
         <tr> 
           <th>Fecha</th>
           <th>Hora</th>
           <th>Doctor</th>
           <th>Paciente</th>
         </tr>
+      </thead>
         {% for consultation in consultations %}
         <tr>
           <td>{{consultation.date}}</td>

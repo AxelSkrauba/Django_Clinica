@@ -9,14 +9,16 @@
       {% endif %}
     </h1>
 
-     <table class="egt" style="color:aliceblue">
+     <table class="table" style="color:aliceblue">
         {% if patients%}
+        <thead class="thead-dark">
         <tr> 
           <th>Nombre</th>
           <th>Apellido</th>
           <th>DNI</th>
           <th>Email</th>
         </tr>
+      </thead>
         {% for patient in patients %}
         <tr>
           <td>{{patient.first_name}}</td>

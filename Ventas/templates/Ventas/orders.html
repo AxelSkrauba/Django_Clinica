@@ -5,8 +5,9 @@
     
     <h1 style="color:aliceblue"><strong>Pedidos Registrados:</strong><a class="btn btn-default" href="{% url 'order_new' %}">Agregar nuevo</span></a></h1>
 
-     <table class="egt" style="color:aliceblue">
+     <table class="table" style="color:aliceblue">
         {% if orders%}
+        <thead class="thead-dark">
         <tr> 
           <th>Cantidad</th>
           <th>Articulo</th>
@@ -15,6 +16,7 @@
           <th>Vendedor</th>
           <th>Estado</th>
         </tr>
+      </thead>
         {% for order in orders %}
         <tr>
           <td>{{order.units}}</td>
