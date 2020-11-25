@@ -1,0 +1,30 @@
+{% extends "header.html" %}
+
+
+{% block content %}
+    
+    <h1 style="color:aliceblue"><strong>Consultas Registradas:</strong><a class="btn btn-default" href="{% url 'consultation_new' %}">Agregar nueva</span></a></h1>
+
+     <table class="egt" style="color:aliceblue">
+        {% if consultations%}
+        <tr> 
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Doctor</th>
+          <th>Paciente</th>
+        </tr>
+        {% for consultation in consultations %}
+        <tr>
+          <td>{{consultation.date}}</td>
+          <td>{{consultation.time}}</td>
+          <td>{{consultation.doctor}}</td>
+          <td>{{consultation.patient}}</td>
+          <td><a class="btn btn-default" href="{% url 'consultation_edit' consultation.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+            <h2 style="color:aliceblue">No hay consultas...</h2>
+        {% endif %}
+      </table>
+
+{% endblock %}

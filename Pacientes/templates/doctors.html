@@ -1,0 +1,28 @@
+{% extends "header.html" %}
+
+
+{% block content %}
+    
+    <h1 style="color:aliceblue"><strong>Doctores Registrados:</strong><a class="btn btn-default" href="{% url 'doctor_new' %}">Agregar nuevo</span></a></h1>
+
+     <table class="egt" style="color:aliceblue">
+        {% if doctors%}
+        <tr> 
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Pacientes</th>
+        </tr>
+        {% for doctor in doctors %}
+        <tr>
+          <td>{{doctor.first_name}}</td>
+          <td>{{doctor.last_name}}</td>
+          <td>{{doctor.patients}}</td>
+          <td><a class="btn btn-default" href="{% url 'doctor_edit' doctor.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+            <h2 style="color:aliceblue">No hay doctores...</h2>
+        {% endif %}
+      </table>
+
+{% endblock %}

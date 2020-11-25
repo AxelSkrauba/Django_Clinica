@@ -1,0 +1,14 @@
+{% extends "header.html" %}
+
+
+{% block content %}
+
+<h2 style="color:aliceblue">Editar Consulta: </h2>
+<form method="POST" class="post-form" style="color:aliceblue">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Guardar</button>
+    <a class="btn btn-danger" href="{% url 'consultation_delete' object.pk %}">Eliminar</a>
+
+</form>
+
+{% endblock %}
