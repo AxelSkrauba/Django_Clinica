@@ -16,7 +16,10 @@
         <tr>
           <td>{{doctor.first_name}}</td>
           <td>{{doctor.last_name}}</td>
-          <td>{{doctor.patients}}</td>
+            {% for patient in doctor.patients.all %}
+            <td>{{patient}},</td>
+            {% endfor %}
+          
           <td><a class="btn btn-default" href="{% url 'doctor_edit' doctor.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
         </tr>
         {% endfor %}

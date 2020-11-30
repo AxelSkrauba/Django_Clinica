@@ -6,7 +6,7 @@
 <h2 style="color:aliceblue">Eliminar doctor: </h2>
 <form method="post">
     {% csrf_token %}
-    <p style="color:aliceblue"><strong>¿Desea eliminar el doctor {{ object }}?</strong></p>
+    <p style="color:aliceblue"><strong>¿Desea eliminar el doctor: {{ object }}?</strong></p>
     <button type="submit" class="btn btn-danger">Confirmar</button>
   </form>
 

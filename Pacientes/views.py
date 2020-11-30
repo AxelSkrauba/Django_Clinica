@@ -7,6 +7,8 @@ from django.utils import timezone
 from Pacientes.models import Patients, Consultations, Doctors
 from .forms import PatientsForm, ConsultationsForm, DoctorsForm
 
+from datetime import date
+
 class Index(TemplateView):
     template_name = 'index.html'
 

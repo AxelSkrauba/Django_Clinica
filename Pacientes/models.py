@@ -16,13 +16,12 @@ class Patients(models.Model):
         ordering = ["last_name"]
 
     def __str__(self):
-        #return fullName(self)
         return '{} {}'.format(self.first_name,self.last_name)
 
 class Doctors(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
-    patients = models.ManyToManyField(Patients, null=True)
+    patients = models.ManyToManyField(Patients)
 
     created = models.DateTimeField(auto_now_add=True)
     edited = models.DateTimeField(auto_now=True)
@@ -33,7 +32,7 @@ class Doctors(models.Model):
 class Consultations(models.Model):
     date = models.DateField(null=False)
     time = models.TimeField(null=False)
-    doctor = models.OneToOneField(Doctors, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctors, on_delete=models.CASCADE)
     patient = models.ForeignKey(Patients, on_delete=models.CASCADE)
 
     created = models.DateTimeField(auto_now_add=True)
