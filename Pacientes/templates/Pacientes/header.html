@@ -43,10 +43,11 @@
           <li class="nav-item {% if request.path == 'index' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'index' %}">Inicio</a>
           </li>
+          {% if request.user|has_group:"GER"%}
           <li class="nav-item {% if request.path == 'doctor' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'doctor' %}">Doctores</a>
           </li>
-          {% if request.user|has_group:"GER"%}
+          
           <li class="nav-item {% if request.path == 'doctor' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'doctor_gerency' %}">Confirmar Rol Doctores</a>
           </li>

@@ -10,7 +10,8 @@ ROL = [
     ('TAL', "Taller"),
     ('GER', "Gerencia"),
 ]
-
+#Roles pensados para añadir los usuarios los grupos con sus permisos, automáticamente
+#Por el momento, no implementado
 
 class UserModuleProfile(User):
     rol = models.CharField(max_length=3, choices=ROL)

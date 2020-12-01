@@ -10,7 +10,6 @@ from Usuarios.forms import AsignarRolDoctorForm
 from .forms import PatientsForm, ConsultationsForm, DoctorsForm, PatientsMedicForm, ConsultationsMedicForm
 
 
-
 from datetime import date
 
 
@@ -26,6 +25,7 @@ class Doctor_list(ListView):
     model = Doctors
     template_name = 'Pacientes/doctors.html'
     context_object_name = 'doctors'
+
 
 class Doctor_Gerency_list(ListView):
     model = UserModuleProfile
@@ -44,7 +44,6 @@ class Doctor_Gerency_list(ListView):
         return queryset
 
 
-
 class Doctor_new(CreateView):
     model = Doctors
     form_class = DoctorsForm
@@ -52,13 +51,11 @@ class Doctor_new(CreateView):
     success_url = reverse_lazy('doctor')
 
 
-
 class Doctor_Gerency_edit(UpdateView):
     model = UserModuleProfile
     form_class = AsignarRolDoctorForm
     template_name = 'Pacientes/doctor_edit.html'
     success_url = reverse_lazy('doctor')
-
 
 
 class Doctor_edit(UpdateView):
@@ -134,12 +131,32 @@ class Consultation_list(ListView):
     model = Consultations
     template_name = 'Pacientes/consultations.html'
     context_object_name = 'consultations'
-    
+
 
 class Consultation_Medic_list(ListView):
     model = Consultations
     template_name = 'Pacientes/consultations.html'
     context_object_name = 'consultations'
+
+    def get_context_data(self, **kwargs):
+        """
+        Filtra por fecha, además de por el doctor asociado
+        """
+        context = super(Consultation_Medic_list,
+                        self).get_context_data(**kwargs)
+        user_id = self.request.user.pk
+        users = UserModuleProfile.objects.all()
+        id_medic = 0
+        for user in users:
+            if user.id == user_id:
+                id_medic = user.medic.id
+        filter_ = Consultations.objects.filter(doctor=id_medic)
+
+        if self.request.GET.get('date_ref'):
+            date_insert = self.request.GET.get('date_ref')
+            filter_ = filter_.filter(date=date_insert)
+        context['consultations'] = filter_
+        return context
 
     def get_queryset(self):
         """
