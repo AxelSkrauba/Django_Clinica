@@ -1,9 +1,13 @@
 {% extends "Pacientes/header.html" %}
-
+{% load user_tags %} 
 
 {% block content %}
     
-    <h1 style="color:aliceblue"><strong>Consultas Registradas:</strong><a class="btn btn-default" href="{% url 'consultation_new' %}">Agregar nueva</span></a></h1>
+    <h1 style="color:aliceblue"><strong>Consultas Registradas:</strong>
+      {% if request.user|has_group:"SEC"%}
+      <a class="btn btn-default" href="{% url 'consultation_new' %}">Agregar nueva</span></a>
+      {% endif %}
+    </h1>
 
      <table class="egt" style="color:aliceblue">
         {% if consultations%}
@@ -19,7 +23,12 @@
           <td>{{consultation.time}}</td>
           <td>{{consultation.doctor}}</td>
           <td>{{consultation.patient}}</td>
+          {% if request.user|has_group:"SEC"%}
           <td><a class="btn btn-default" href="{% url 'consultation_edit' consultation.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+          {% endif %}
+          {% if request.user|has_group:"DOC"%}
+          <td><a class="btn btn-default" href="{% url 'consultation_medic_edit' consultation.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+          {% endif %}
         </tr>
         {% endfor %}
         {% else %}

@@ -13,10 +13,11 @@ from .forms import RegistroForm, FormularioLogin
 
 
 class RegistroUsuario(CreateView):
-	model = User
-	template_name = 'Usuarios/registrar.html'
-	form_class = RegistroForm
-	success_url = reverse_lazy('index')
+    model = User
+    template_name = 'Usuarios/registrar.html'
+    form_class = RegistroForm
+    success_url = reverse_lazy('index')
+
 
 class Login(FormView):
     template_name = 'Usuarios/login.html'
@@ -34,6 +35,7 @@ class Login(FormView):
     def form_valid(self, form):
         login(self.request, form.get_user())
         return super(Login, self).form_valid(form)
+
 
 def logoutUsuario(request):
     logout(request)

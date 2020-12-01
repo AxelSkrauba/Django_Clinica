@@ -3,6 +3,7 @@
 
 {% block content %}
 
+{% if perms.Pacientes.change_consultations %}
 <h2 style="color:aliceblue">Editar Consulta: </h2>
 <form method="POST" class="post-form" style="color:aliceblue">{% csrf_token %}
     {{ form.as_p }}
@@ -10,5 +11,6 @@
     <a class="btn btn-danger" href="{% url 'consultation_delete' object.pk %}">Eliminar</a>
 
 </form>
+{% endif %}
 
 {% endblock %}

@@ -1,0 +1,29 @@
+{% extends "Pacientes/header.html" %}
+
+
+{% block content %}
+    
+    <h1 style="color:aliceblue"><strong>Cuentas Registradas como Doctores:</strong></h1>
+
+     <table class="egt" style="color:aliceblue">
+        {% if doctors%}
+        <tr> 
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Pacientes</th>
+        </tr>
+        {% for doctor in doctors %}
+        <tr>
+          <td>{{doctor.first_name}}</td>
+          <td>{{doctor.last_name}}</td>
+
+          
+          <td><a class="btn btn-default" href="{% url 'doctor_gerency_edit' doctor.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+            <h2 style="color:aliceblue">No hay doctores...</h2>
+        {% endif %}
+      </table>
+
+{% endblock %}

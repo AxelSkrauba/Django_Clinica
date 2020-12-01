@@ -3,6 +3,7 @@
   <head>
   
       {% load static %}
+      {% load user_tags %} 
   
       <!-- Bootstrap -->
       <link href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -24,6 +25,10 @@
         
           <span class="site-heading-lower">Clínica de Optometría - PoloTIC2020</span>
         </h1>
+
+        <h2 style="color:aliceblue">
+          <span class="site-heading-lower">Bienvenido: "{{user.first_name.capitalize }} {{user.last_name.capitalize }}"</span>
+        </h2>
   
   
    <!-- Navbar -->
@@ -41,12 +46,31 @@
           <li class="nav-item {% if request.path == 'doctor' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'doctor' %}">Doctores</a>
           </li>
+          {% if request.user|has_group:"GER"%}
+          <li class="nav-item {% if request.path == 'doctor' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'doctor_gerency' %}">Confirmar Rol Doctores</a>
+          </li>
+          {% endif %}
+          {% if request.user|has_group:"SEC"%}
           <li class="nav-item {% if request.path == 'consultation' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'consultation' %}">Consultas</a>
           </li>
+          {% endif %}
+          {% if request.user|has_group:"DOC"%}
+          <li class="nav-item {% if request.path == 'consultation' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'consultation_medic' %}">Consultas</a>
+          </li>
+          {% endif %}
+          {% if request.user|has_group:"SEC"%}
           <li class="nav-item {% if request.path == 'patient' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'patient' %}">Pacientes</a>
           </li>
+          {% endif %}
+          {% if request.user|has_group:"DOC"%}
+          <li class="nav-item {% if request.path == 'patient' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'patient_medic' %}">Pacientes</a>
+          </li>
+          {% endif %}
           <li>
             <a class="nav-link text-uppercase text-expanded" href="{% url 'logout' %}">Salir</a>
           </li>
