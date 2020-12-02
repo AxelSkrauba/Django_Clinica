@@ -1,0 +1,35 @@
+{% extends "Pacientes/header.html" %}
+
+
+{% block content %}
+    
+    <h1 style="color:aliceblue"><strong>Pedidos Registrados:</strong><a class="btn btn-default" href="{% url 'order_new' %}">Agregar nuevo</span></a></h1>
+
+     <table class="egt" style="color:aliceblue">
+        {% if orders%}
+        <tr> 
+          <th>Cantidad</th>
+          <th>Articulo</th>
+          <th>Total</th>
+          <th>Cliente</th>
+          <th>Vendedor</th>
+          <th>Estado</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+          <td>{{order.units}}</td>
+          <td>{{order.article}}</td>
+          <td>{{order.total}}</td>
+          <td>{{order.client}}</td>
+          <td>{{order.seller}}</td>
+          <td>{{order.status}}</td>
+          
+          <td><a class="btn btn-default" href="{% url 'order_edit' order.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+            <h2 style="color:aliceblue">No hay pedidos...</h2>
+        {% endif %}
+      </table>
+
+{% endblock %}

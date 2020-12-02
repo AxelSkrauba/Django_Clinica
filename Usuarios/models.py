@@ -18,4 +18,4 @@ class UserModuleProfile(User):
     medic = models.OneToOneField(Doctors, default=None, null=True, on_delete=models.SET_DEFAULT)
 
     def __str__(self):
-        return self.rol
+        return '{} {}'.format(self.first_name, self.last_name)

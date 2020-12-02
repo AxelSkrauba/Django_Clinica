@@ -1,0 +1,53 @@
+{% extends "Pacientes/header.html" %}
+
+
+{% block content %}
+
+<h1 style="color:aliceblue"><strong>Artículos Registrados:</strong><a class="btn btn-default" href="{% url 'product_new' %}">Agregar nuevo</span></a></h1>
+
+<table class="egt" style="color:aliceblue">
+   
+   {% if products%}
+   <tr> 
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Precio</th>
+    <th>¿Es Lente?</th>
+    <th>Distancia</th>
+    <th>Lado</th>
+    <th>¿Incluye Armazón?</th>
+  </tr>
+   {% for product in products %}
+   <tr>
+     <td>{{product.name}}</td>
+     {% if product.description %}
+        <td>{{product.description}}</td>
+      {% else %}
+        <td>Sin descripción</td>
+      {% endif %}
+     <td>{{product.price}}</td>
+     {% if product.is_glasses %}
+        <td>Si</td>
+        <td>{{product.distance}}</td>
+        <td>{{product.side}}</td>
+        {% if product.frame %}
+        <td>Si</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      {% else %}
+        <td>No</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+      {% endif %}
+     <td><a class="btn btn-default" href="{% url 'product_edit' product.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+   </tr>
+   {% endfor %}
+
+   {% else %}
+   <h2 style="color:aliceblue">No hay artículos...</h2>
+   {% endif %}
+ </table>
+
+{% endblock %}
