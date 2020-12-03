@@ -1,0 +1,15 @@
+El superusurio para el admin nativo de Django:
+admin : admin
+
+Usuarios de prueba con los roles para el proyecto:
+
+gerencia
+secretaria
+secretaria2
+medico
+medico2
+ventas
+ventas2
+taller
+
+La clave es, para todos los casos: "startproject", sin comillas.
