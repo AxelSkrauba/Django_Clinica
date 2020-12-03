@@ -1,0 +1,48 @@
+{% extends "Pacientes/header.html" %}
+{% load user_tags %}
+
+{% block content %}
+    
+    <h1 style="color:aliceblue"><strong>Pacientes que NO Asistieron:</strong></h1>
+
+      {% if request.user|has_group:"GER"%}
+      <form class="navbar-form navbar-right"  action="." method="get">
+        <label style="color:aliceblue">Filtrar por día específico:</label>
+        <input id="date_ref" name="date_ref" type="date">
+        <button type="submit" class="btn btn-success">Filtrar<span class="glyphicon glyphicon-search"></span></button>
+    </form>
+
+    <form class="navbar-form navbar-right"  action="." method="get">
+      <label for="cars" style="color:aliceblue">Filtrar por último período:</label>
+        <select id="choice_ref" name="choice_ref">
+          <option value="mes">Mes</option>
+          <option value="semana">Semana</option>
+        </select>
+
+      <button type="submit" class="btn btn-success">Filtrar<span class="glyphicon glyphicon-search"></span></button>
+    </form>
+    {% endif %}
+
+    <h3 style="color:aliceblue"><strong>{{mensaje_filtro}}</strong></h3>
+     <table class="egt" style="color:aliceblue">
+        {% if patients%}
+        <tr> 
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>DNI</th>
+          <th>Email</th>
+        </tr>
+        {% for patient in patients %}
+        <tr>
+          <td>{{patient.first_name}}</td>
+          <td>{{patient.last_name}}</td>
+          <td>{{patient.dni}}</td>
+          <td>{{patient.email}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+            <h2 style="color:aliceblue">No hay pacientes...</h2>
+        {% endif %}
+      </table>
+
+{% endblock %}

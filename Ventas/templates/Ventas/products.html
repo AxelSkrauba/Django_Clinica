@@ -5,9 +5,10 @@
 
 <h1 style="color:aliceblue"><strong>Artículos Registrados:</strong><a class="btn btn-default" href="{% url 'product_new' %}">Agregar nuevo</span></a></h1>
 
-<table class="egt" style="color:aliceblue">
+<table class="table" style="color:aliceblue">
    
    {% if products%}
+   <thead class="thead-dark">
    <tr> 
     <th>Nombre</th>
     <th>Descripción</th>
@@ -17,6 +18,7 @@
     <th>Lado</th>
     <th>¿Incluye Armazón?</th>
   </tr>
+  </thead>
    {% for product in products %}
    <tr>
      <td>{{product.name}}</td>

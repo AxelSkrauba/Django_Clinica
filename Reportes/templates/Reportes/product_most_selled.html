@@ -1,0 +1,31 @@
+{% extends "Pacientes/header.html" %}
+{% load user_tags %}
+
+{% block content %}
+    
+    <h1 style="color:aliceblue"><strong>Productos más  Vendidos del mes:</strong></h1>
+      {% if request.user|has_group:"GER"%}
+      
+      <table class="egt" style="color:aliceblue">
+        {% if products%}
+        <tr> 
+          <th>Unidades vendidas</th>
+          <th>Nombre</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+          <td>{{product.1}}</td>
+          <td>{{product.0}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+            <h2 style="color:aliceblue">No hay productos vendidos...</h2>
+        {% endif %}
+      </table>
+
+      {% else %}
+      <h2 style="color:aliceblue">Debe pertenecer al grupo GERENCIA.</h2>
+      {% endif %}
+    
+
+{% endblock %}

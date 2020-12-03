@@ -121,3 +121,9 @@ class Order_list(ListView):
     model = Order
     template_name = 'Ventas/orders.html'
     context_object_name = 'orders'
+
+class Order_Workshop_list(ListView):
+    model = Order
+    depth = 1
+    template_name = 'Ventas/orders_workshop.html'
+    context_object_name = 'orders'

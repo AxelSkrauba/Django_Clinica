@@ -48,6 +48,7 @@ class Order(models.Model):
     seller = models.ForeignKey(UserModuleProfile, null=True, blank=True,
                                on_delete=models.SET_NULL)
     status = models.CharField(max_length=2, default='PN', choices=STATUS)
+    date = models.DateField(auto_now_add=True)
 
     created = models.DateTimeField(auto_now_add=True)
     edited = models.DateTimeField(auto_now=True)

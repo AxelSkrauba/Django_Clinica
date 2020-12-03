@@ -1,0 +1,60 @@
+{% extends "Pacientes/header.html" %}
+
+
+{% block content %}
+    
+    <h1 style="color:aliceblue"><strong>Pedidos Pendientes:</strong><a class="btn btn-default" href="{% url 'order_new' %}">Agregar nuevo</span></a></h1>
+
+     <table class="table" style="color:aliceblue">
+      <thead class="thead-dark">
+        {% if orders%}
+            <tr> 
+              <th scope="col">Cantidad</th>
+              <th>Articulo</th>
+              <th scope="col">Estado</th>
+
+              <th>Descripción</th>
+              <th>¿Es Lente?</th>
+              <th>Distancia</th>
+              <th>Lado</th>
+              <th>¿Incluye Armazón?</th>
+            </tr>
+      </thead>
+            {% for order in orders %}
+              {% if order.status != "FI" %}
+                    <tr>
+                      <td>{{order.units}}</td>
+                      <td>{{order.article}}</td>
+                      <td>{{order.status}}</td>
+
+                      {% if order.article.description %}
+                        <td>{{order.article.description}}</td>
+                      {% else %}
+                          <td>Sin descripción</td>
+                      {% endif %}
+                      {% if order.article.is_glasses %}
+                          <td>Si</td>
+                          <td>{{order.article.distance}}</td>
+                          <td>{{order.article.side}}</td>
+                          {% if order.article.frame %}
+                          <td>Si</td>
+                          {% else %}
+                          <td>No</td>
+                          {% endif %}
+                      {% else %}
+                          <td>No</td>
+                          <td>---</td>
+                          <td>---</td>
+                          <td>---</td>
+                      {% endif %}
+                      
+                      <td><a class="btn btn-default" href="{% url 'order_edit' order.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    </tr>
+                  {% endif %}
+            {% endfor %}
+        {% else %}
+            <h2 style="color:aliceblue">No hay pedidos...</h2>
+        {% endif %}
+      </table>
+
+{% endblock %}
