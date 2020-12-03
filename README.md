@@ -7,7 +7,6 @@ Curso de Desarrollo Full Stack con Python y JavaScript
 * Django_Clinica uses Python 3.8.5, Django 3.1.1. 
 
 ### Setup: ### 
-* 
 ```bash
 $ git clone git@github.com:AxelSkrauba/Django_Clinica.git
 $ cd Django_Clinica
