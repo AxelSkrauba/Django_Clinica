@@ -244,35 +244,37 @@ class Sales_Month_Seller(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Sales_Month_Seller, self).get_context_data(**kwargs)
+        if self.request.GET.get('choice_month'):
+            mes = int(self.request.GET.get('choice_month'))
+            orders = Order.objects.all()
+            today = date.today()
+            sales_year = {}
+            for m in range(1, mes+1):
+                days = []
+                for d in range(1, calendar.monthrange(today.year, m)[1]+1):
+                    days.append('{}-{}-{}'.format(today.year, m, d))
+                order_m = orders.filter(date__in=days)
+                sales_year[m]=order_m
 
-        orders = Order.objects.all()
-        today = date.today()
-        sales_year = {}
-        for m in range(1, 13):
-            days = []
-            for d in range(1, calendar.monthrange(today.year, m)[1]+1):
-                days.append('{}-{}-{}'.format(today.year, m, d))
-            order_m = orders.filter(date__in=days)
-            sales_year[m]=order_m
+            sellers = UserModuleProfile.objects.filter(rol='VEN')
+            sellers_count = {}
+            sellers_month_count = {}
+            for seller in sellers:
+                sellers_count[seller]=0
+                for month, sales_month in sales_year.items():
+                    for sale in sales_month:
+                        if sale.seller.pk == seller.pk:
+                            sellers_count[seller]+=1
+                fullName_seller = '{} {}'.format(seller.first_name,seller.last_name)
 
-        sellers = UserModuleProfile.objects.filter(rol='VEN')
-        sellers_count = {}
-        sellers_month_count = {}
-        for seller in sellers:
-            sellers_count[seller]=0
-            for month, sales_month in sales_year.items():
-                for sale in sales_month:
-                    if sale.seller.pk == seller.pk:
-                        sellers_count[seller]+=1
-            fullName_seller = '{} {}'.format(seller.first_name,seller.last_name)
-            if months[month] in sellers_month_count:
-                aux = sellers_month_count[months[month]]
-                aux[fullName_seller] = sellers_count[seller]
-                sellers_month_count[months[month]] = aux
-            else:
-                aux = {}
-                aux[fullName_seller] = sellers_count[seller]
-                sellers_month_count[months[month]] = aux
+                if months[month] in sellers_month_count:
+                    aux = sellers_month_count[months[month]]
+                    aux[fullName_seller] = sellers_count[seller]
+                    sellers_month_count[months[month]] = aux
+                else:
+                    aux = {}
+                    aux[fullName_seller] = sellers_count[seller]
+                    sellers_month_count[months[month]] = aux
 
-        context['sales'] = sellers_month_count
+            context['sales'] = sellers_month_count
         return context

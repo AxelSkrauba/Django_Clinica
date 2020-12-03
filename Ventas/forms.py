@@ -45,16 +45,18 @@ class OrderForm(forms.ModelForm):
 
     class Meta:
         model = Order
-        fields = ('client', 'article', 'units', 'status',)
+        fields = ('client', 'article', 'units', 'tipe','status',)
         labels = {
             'client': 'Cliente',
             'article': 'Artículo',
             'units': 'Cantidad',
+            'tipe': 'Tipo de Pago',
             'status': 'Estado',
         }
         widgets = {
             'client':forms.Select(),
             'article':forms.Select(),
+            'tipe':forms.Select(),
             'status':forms.Select(),
         }
 

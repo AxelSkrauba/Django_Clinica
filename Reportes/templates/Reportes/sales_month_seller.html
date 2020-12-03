@@ -5,7 +5,25 @@
     
     <h1 style="color:aliceblue"><strong>Ventas totales por Mes, por Vendedor:</strong></h1>
       {% if request.user|has_group:"GER"%}
-
+      
+      <form class="navbar-form navbar-right"  action="." method="get">
+        <label for="cars" style="color:aliceblue">Seleccionar mes:</label>
+          <select id="choice_month" name="choice_month">
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+          </select>
+          <button type="submit" class="btn btn-success">Filtrar<span class="glyphicon glyphicon-search"></span></button>
+      </form>
       <table class="table" style="color:aliceblue">
         {% if sales%}
         

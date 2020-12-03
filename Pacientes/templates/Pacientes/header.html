@@ -43,7 +43,7 @@
           <li class="nav-item {% if request.path == 'index' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'index' %}">Inicio</a>
           </li>
-          {% if request.user|has_group:"VEN"%}
+          {% if request.user|has_group:"VEN" or request.user|has_group:"GER"%}
           <li class="nav-item {% if request.path == 'product' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'product' %}">Productos</a>
           </li>
@@ -67,7 +67,7 @@
             <a class="nav-link text-uppercase text-expanded" href="{% url 'order_workshop' %}">Pedidos</a>
           </li>
           {% endif %}
-          {% if request.user|has_group:"SEC"%}
+          {% if request.user|has_group:"SEC" or request.user|has_group:"GER"%}
           <li class="nav-item {% if request.path == 'consultation' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'consultation' %}">Consultas</a>
           </li>

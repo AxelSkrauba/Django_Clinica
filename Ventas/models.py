@@ -17,7 +17,12 @@ STATUS = [
     ('TA', "Taller"),
     ('FI', "Finalizado"),
 ]
-
+TIPE = [
+    ('Tarjeta Crédito', "Tarjeta Crédito"),
+    ('Tarjeta Débito', "Tarjeta Débito"),
+    ('Billetera Virtual', "Billetera Virtual"),
+    ('Efectivo', "Efectivo"),
+]
 
 class Product(models.Model):
     name = models.CharField(max_length=20)
@@ -48,6 +53,7 @@ class Order(models.Model):
     seller = models.ForeignKey(UserModuleProfile, null=True, blank=True,
                                on_delete=models.SET_NULL)
     status = models.CharField(max_length=2, default='PN', choices=STATUS)
+    tipe = models.CharField(max_length=20, default='Efectivo', choices=TIPE)
     date = models.DateField(auto_now_add=True)
 
     created = models.DateTimeField(auto_now_add=True)
