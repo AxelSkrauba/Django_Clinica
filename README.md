@@ -1,7 +1,8 @@
 # Django_Clinica #
 
-### Descripción ###
-Sistema minimalista Clínica de Optometría - Curso PoloTIC 2020
+### Description ###
+Minimalist Optometry Clinic System - PoloTIC 2020 Course
+
 Curso de Desarrollo Full Stack con Python y JavaScript
 
 * Django_Clinica uses Python 3.8.5, Django 3.1.1. 
